@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Add This app to your store</title>
+	<link href="<% forwardingAddress %> /css/style.css" rel="stylesheet">
+  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+	<div class="main">
+		<div class="container">
+			<div class="row">
+				<div class="add-store">
+					<%if (render) { %>
+						<%if (status) { %>
+							<p>Application has been installed, <a href='<%= url %>'>click here</a> to go store admin.</p>
+						<% }else { %>	
+							<p><%= err %></p>
+						<% } %>	
+					<% } %>	
+					<form class="" class="form-horizontal" action="/store" method="get">
+						<div class="form-group">
+							<div class="col-sm-12  text-center">
+								<input class="form-control store-url" type="text" name="shop" placeholder="mystore.com">
+							</div>
+						</div>
+						<div class="form-group ">
+							<div class="col-sm-12 text-center">
+								<button type="submit" class="btn btn-primary">Submit</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>	
+	<script type="text/javascript">
+		history.pushState(null, '', '/');
+	</script>
+</body>
+</html>

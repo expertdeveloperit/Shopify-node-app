@@ -1,0 +1,23 @@
+{
+  "name": "shopify-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Expert Tech",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cookie": "^0.3.1",
+    "dotenv": "^6.0.0",
+    "ejs": "^2.6.1",
+    "express": "^4.16.3",
+    "mongoose": "^5.2.2",
+    "node-cron": "^1.2.1",
+    "nonce": "^1.0.4",
+    "request": "^2.87.0",
+    "request-promise": "^4.2.2"
+  }
+}

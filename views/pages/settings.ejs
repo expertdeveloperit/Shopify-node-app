@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="css/style.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="https://cdn.shopify.com/s/assets/external/app.js"></script>
+  <script type="text/javascript">
+  var initHandle = "";
+    ShopifyApp.init({
+      apiKey: '9bb3984dc148177f357a4e4449b5f503',
+      shopOrigin: 'https://order-tracking-app.myshopify.com',
+
+    });
+    function doSomeCustomAction(){
+      if ($("#status").prop('checked')==true){ 
+        status = true;
+      }else{
+        status:false;
+      }
+      var date_format = $("#date_format").val();
+      var page_handle = $("#page_handle").val();
+      var updateHandle = false;
+      if(initHandle != page_handle){
+        updateHandle = true;
+        initHandle = page_handle;
+      }
+      var formData = {status,date_format,page_handle,updateHandle};
+
+      var url  = window.location.href;
+      var params = url.split("app?", 2);
+      $.ajax({
+        url: '/settings/update?'+params[1 ],
+        type: 'POST',
+        data: formData,
+        success: function(res) {
+          ShopifyApp.Bar.loadingOff();
+          if(res.status){
+            ShopifyApp.flashNotice(res.msg)
+          }else{
+            ShopifyApp.flashError(res.msg);  
+          }
+        },
+        error: function(err) {
+          ShopifyApp.flashError(err);
+        }
+      });
+    } 
+    function getData(){
+      var data = {};
+      data.hmac = urlParam('hmac');
+      data.locale = urlParam('locale');
+      data.protocol = urlParam('protocol');
+      data.shop = urlParam('shop');
+      data.timestamp = urlParam('timestamp');      
+      
+      ShopifyApp.Bar.loadingOn();
+        console.log($('form').serialize());
+        $.ajax({
+          url: '/settings',
+          type: 'GET',
+          data: data,
+          success: function(res) {
+            initHandle = res.data.page_handle;
+            $("#settings").show();
+            console.log("data",res.data);
+            $('#settings #status').prop('checked', res.data.status);
+            $('#settings #date_format').val(res.data.date_format);
+            $('#settings #page_handle').val(res.data.page_handle);
+          },
+          error: function(err) {
+            ShopifyApp.flashError(err);
+          }
+        });
+      
+    }
+    function urlParam(name){
+      var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+      return results[1] || 0;
+    }
+
+  </script>
+  <script type="text/javascript">
+      ShopifyApp.ready(function(){
+        getData();
+        ShopifyApp.Bar.initialize({
+          title: 'Settings',
+          buttons: {
+            primary: {
+              label: 'Save',
+              message: 'save',
+              callback: function(){
+                ShopifyApp.Bar.loadingOn();
+                doSomeCustomAction();
+              }
+            }
+          }
+        });
+  });
+</script>
+</head>
+<body>
+  <div id="settings" class="container settings">
+      <div class="row ">
+        <form id="settingsForm" class="form-horizontal">
+          <div class="form-group">
+            <label class="formlabel col-sm-2 control-label">Status:</label>
+            <div class="col-sm-6">
+              <label class="switch">
+                <input name="status" id="status" type="checkbox" checked>
+                <span class="slider round"></span>
+              </label>
+            </div>          
+          </div>
+          <div class="form-group">
+            <label  class="col-sm-2 control-label formlabel">Date Format:</label>
+            <div class="col-sm-6">
+              <select id="date_format" name="date_format" class="form-control">
+                <option >Select</option>
+                <option value="DD/MM/YYYY">DD/MM/YYYY</option>
+                <option value="DD-MM-YYYY">DD-MM-YYYY</option>
+                <option value="YYYY/MM/DD">YYYY/MM/DD</option>
+                <option value="YYYY-MM-DD">YYYY-MM-DD</option>
+              </select>
+            </div>
+          </div> 
+          <div class="form-group">
+            <label class="col-sm-2 control-label formlabel">Page Url:</label>
+            <div class="col-sm-6">
+              <input id="page_handle" name="page_handle" type="text" class="form-control"  placeholder="url">
+            </div>
+          </div>    
+        </form>  
+      </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,92 @@
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {display:none;}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+.settings {
+    margin-top: 50px;
+    display: none;
+}
+.settings .form-horizontal .formlabel{
+      color: #000;
+    vertical-align: top;
+    margin-right: 10px;
+    display: inline-block;
+    font-size: 15px;
+    text-align: left;
+    max-width: 150px;
+}
+
+.main{
+  background-image: url('../images/paris.jpg');
+  background-position: center center;
+  background-size: cover;
+  height: auto;
+  left: 0;
+  min-height: 100%;
+  min-width: 100%;
+  position: absolute;
+  top: 0;
+  width: auto;
+  padding: 200px 100px;
+}
+.add-store .store-url {
+    max-width: 50%;
+    margin: 0px auto 10px;
+    background: transparent;
+    border: 2px solid #00000061;
+    color: #000;
+}
+.add-store p{
+  text-align: center;
+}
