@@ -71,7 +71,6 @@ const allfuntion = module.exports  = {
 	            return false;
 	          }
 	        });
-	        console.log("themeid",themeId);
 	        if(themeId){
 	            let url = `https://`+store.storeInfo.domain+`/admin/themes/${themeId}/assets.json?asset[key]=layout/theme.liquid&theme_id=${themeId}`;
 	              request.get(url,{headers:shopRequestHeaders})
@@ -94,7 +93,6 @@ const allfuntion = module.exports  = {
 	                        console.log("shopRequestHeaders",shopRequestHeaders);
 	                        request.put({url:shopRequestUrl, headers:shopRequestHeaders, form:body})
 	                        .then((shopResponse) => {
-	                           console.log("err",shopResponse);
 	                         shopifyAppModel.findOneAndUpdate({'storeInfo.id':store.storeInfo.id},{insert_script:true},function (err, data) {
 	                            if(err){
 	                              allfuntion.errorSaveDb(store,err);
@@ -105,7 +103,6 @@ const allfuntion = module.exports  = {
 	                          
 	                        })
 	                        .catch((err) => {
-	                        	console.log("eeeeee",err);
 	                          allfuntion.errorSaveDb(store,err);
 	                        });
 	                    }else{
