@@ -60,6 +60,7 @@ const allfuntion = module.exports  = {
 	    const shopRequestHeaders = {
 	      'X-Shopify-Access-Token': accessToken,
 	    };
+
 	    let themeId = '';
 	    request.get(shopRequestUrl,{headers:shopRequestHeaders})
 	    .then((shopResponse) => {
@@ -70,6 +71,7 @@ const allfuntion = module.exports  = {
 	            return false;
 	          }
 	        });
+	        console.log("themeid",themeId);
 	        if(themeId){
 	            let url = `https://`+store.storeInfo.domain+`/admin/themes/${themeId}/assets.json?asset[key]=layout/theme.liquid&theme_id=${themeId}`;
 	              request.get(url,{headers:shopRequestHeaders})
@@ -77,27 +79,33 @@ const allfuntion = module.exports  = {
 	                    var data = JSON.parse(shopResponse);
 	                    var html = data.asset.value;
 	                    var substring = 'static/js/bundle.js';
+	                    console.log(html.indexOf(substring),"indexof");
 	                    if(html.indexOf(substring) < 0){
 	                        html = html.replace("</body>",'<script src="https://shopify-track-order.herokuapp.com/static/js/bundle.js"></script></body>');
 	                        html = html.replace("</head>",'<link rel="stylesheet" href="https://shopify-track-order.herokuapp.com/css/style.css"></head>');
-	                        const shopRequestUrl = `https://order-tracking-app.myshopify.com/admin/themes/${themeId}/assets.json`;
+	                        const shopRequestUrl = `https://`+store.storeInfo.domain+`/admin/themes/${themeId}/assets.json`;
 	                        var body = {
 	                          "asset": {
 	                            "key": "layout/theme.liquid",
 	                            "value": html
 	                          }
 	                        };
+	                        //console.log("make changes",html);
+	                        console.log("shopRequestHeaders",shopRequestHeaders);
 	                        request.put({url:shopRequestUrl, headers:shopRequestHeaders, form:body})
 	                        .then((shopResponse) => {
+	                           console.log("err",shopResponse);
 	                         shopifyAppModel.findOneAndUpdate({'storeInfo.id':store.storeInfo.id},{insert_script:true},function (err, data) {
 	                            if(err){
 	                              allfuntion.errorSaveDb(store,err);
 	                            }
+	                            console.log(shopResponse,"shopResponse");
 	                            return true;
 	                          });
 	                          
 	                        })
 	                        .catch((err) => {
+	                        	console.log("eeeeee",err);
 	                          allfuntion.errorSaveDb(store,err);
 	                        });
 	                    }else{
