@@ -1,92 +1,248 @@
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 60px;
-  height: 34px;
+body{
+	font-family: 'Open Sans', sans-serif;
+}
+*{
+	box-sizing: border-box;
+}
+.textBlue{
+	color: #337ab7;
+}
+.h1, .h2, .h3, h1, h2, h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+ul{
+	padding: 0;
+}
+ul li{
+	list-style: none;
+}
+button, html input[type=button], input[type=reset], input[type=submit] {
+    -webkit-appearance: button;
+    cursor: pointer;
+}
+button, input, optgroup, select, textarea {
+    margin: 0;
+    font: inherit;
+    color: inherit;
+    box-sizing: border-box;
+}
+.status_label{
+	display: inline;
+    padding: .2em .6em .3em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25em;
+}
+.status_label_success{
+    background-color: #5cb85c;
+}
+.status_label_failure{
+	background-color: #a94442
+}
+.customButton{
+	display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+.defaultbtn{
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+}
+.defaultbtn:hover{
+	background-color: #ccc;
+}
+.formInput{
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+.floatRight{
+	float: right !important;
 }
 
-.switch input {display:none;}
-
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
+.clearfix{
+	clear: both;
 }
-
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
+.blockcontainer{
+	width: 80%;
+	margin: 0 auto;
 }
-
-input:checked + .slider {
-  background-color: #2196F3;
+.blockcontainermain{
+	width: 80%;
+	margin: 0 auto;
 }
-
-input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3;
-}
-
-input:checked + .slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px);
-}
-
-/* Rounded sliders */
-.slider.round {
-  border-radius: 34px;
-}
-
-.slider.round:before {
-  border-radius: 50%;
-}
-.settings {
-    margin-top: 50px;
-    display: none;
-}
-.settings .form-horizontal .formlabel{
-      color: #000;
-    vertical-align: top;
-    margin-right: 10px;
-    display: inline-block;
+.blockcontainermain p{
+	margin: 0;
+    font-weight: normal;
     font-size: 15px;
-    text-align: left;
-    max-width: 150px;
+}
+.blockcontainerinner{
+	width: 60%;
+	margin: 0 auto;
+}
+.display_block{
+	width: 100%;
+	float: left;
 }
 
-.main{
-  background-image: url('../images/paris.jpg');
-  background-position: center center;
-  background-size: cover;
-  height: auto;
-  left: 0;
-  min-height: 100%;
-  min-width: 100%;
-  position: absolute;
-  top: 0;
-  width: auto;
-  padding: 200px 100px;
+.width50{
+	width: 50%;
+	float: left;
 }
-.add-store .store-url {
-    max-width: 50%;
-    margin: 0px auto 10px;
-    background: transparent;
-    border: 2px solid #00000061;
-    color: #000;
+.width25{
+	width: 25%;
+	float: left;
 }
-.add-store p{
-  text-align: center;
+.width75{
+	width: 75%;
+	float: left;
 }
+.textleft{
+	text-align: left;
+}
+.textright{
+	text-align: right;
+}
+.fontbold{
+	font-weight: bold;
+}
+.mb10{
+	margin-bottom: 10px;
+}
+.mb20{
+	margin-bottom: 20px;
+}
+.mb40{
+	margin-bottom: 40px;
+}
+
+.heading h2{
+	text-align: center;
+	font-weight: bold;
+	font-size: 30px;
+}
+.order_status_form label{
+	text-align: left !important;
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: 700;
+    padding-right: 5px;
+    box-sizing: border-box;
+    font-size: 15px;
+}
+
+.order_status_form input{
+	height: 40px;
+	border-radius: 0px;
+}
+.order_status_form input[type="text"],.order_status_form input[type="email"]{
+	
+	border-radius: 0px;
+	width: 100%;
+}
+.order_status_form button{
+	border-radius: 0px;
+}
+.horizontalform .formGroup{
+	margin-bottom: 15px;
+}
+.order-details h4{
+	font-size: 18px;
+}
+.statustable{
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+    background-color: transparent;
+    border-spacing: 0;
+    border-collapse: collapse;
+    font-size: 15px;
+
+}
+.statustable>thead>tr>th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #ddd;
+}
+th {
+    text-align: left;
+}
+.statustable>tbody>tr>td,
+.statustable>tbody>tr>th,
+.statustable>tfoot>tr>td,
+.statustable>tfoot>tr>th,
+.statustable>thead>tr>td,
+.statustable>thead>tr>th {
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #ddd;
+}
+.tableStriped>tbody>tr:nth-of-type(odd) {
+    background-color: #f9f9f9;
+}
+.tableResponsive {
+    min-height: .01%;
+    overflow-x: auto;
+}
+.summary p.total{
+    font-size: 20px;
+    font-weight: bold;
+}
+@media screen and (max-width: 767px){
+	.width25,.width75,.width50{
+		width: 100%;
+	}
+	.blockcontainermain,.blockcontainerinner{
+		width: 100%;
+	
+	}
+	.tableResponsive>.statustable>tbody>tr>td,
+	.tableResponsive>.statustable>tbody>tr>th,
+	.tableResponsive>.statustable>tfoot>tr>td,
+	.tableResponsive>.statustable>tfoot>tr>th,
+	.tableResponsive>.statustable>thead>tr>td,
+	.tableResponsive>.statustable>thead>tr>th {
+	    white-space: nowrap;
+	}
+	.order .textright{
+		text-align: left;
+	}
+}
+
